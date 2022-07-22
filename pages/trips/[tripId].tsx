@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import { StopPoint } from "../../components/StopPoint";
+import useOffline from "../../hooks/useOffline";
 
 type TripPageProps = {
     description: {
@@ -24,19 +25,22 @@ type TripPageProps = {
 
 const TripPage: NextPage<TripPageProps> = ({ route, description }) => {
 
+    const [isOffline] = useOffline();
+
     return (
         <>
             <header className="bg-teal-500 py-1 px-6">
                 <h1 className="font-bold text-3xl">ember</h1>
             </header>
             <main className="py-6 px-4">
+                {!isOffline && <div className="bg-orange-400 py-2 px-4 text-orange-900 font-medium">Not connected to the internet. Live updates paused.</div>}
                 <header className="flex justify-between items-center">
                     <div>
                         <h2 className="text-2xl font-bold">Your journey on {description.route_number}</h2>
                         <h2 className="text-xl font-semibold text-slate-700">{description.calendar_date}</h2>
                     </div>
                     <div>
-                        <button className="bg-teal-500 px-4 py-2 font-semibold">Share Journey</button>
+                        <button className="bg-teal-400 hover:bg-teal-500 active:bg-teal-600 px-4 py-2 font-semibold">Share Journey</button>
                     </div>
                 </header>
                 <section>
