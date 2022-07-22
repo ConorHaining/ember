@@ -1,7 +1,11 @@
 import { GetServerSidePropsContext, NextPage } from "next";
-import { StopPoint } from "../components/StopPoint";
+import { StopPoint } from "../../components/StopPoint";
 
 type TripPageProps = {
+    description: {
+        calendar_date: string,
+        route_number: string
+    },
     route: {
         id: number;
         departure: {
@@ -18,19 +22,27 @@ type TripPageProps = {
     }[]
 };
 
-const TripPage: NextPage<TripPageProps> = ({ route }) => {
+const TripPage: NextPage<TripPageProps> = ({ route, description }) => {
 
     return (
         <>
             <header className="bg-teal-500 py-1 px-6">
                 <h1 className="font-bold text-3xl">ember</h1>
             </header>
-            <main>
+            <main className="py-6 px-4">
+                <header className="flex justify-between items-center">
+                    <div>
+                        <h2 className="text-2xl font-bold">Your journey on {description.route_number}</h2>
+                        <h2 className="text-xl font-semibold text-slate-700">{description.calendar_date}</h2>
+                    </div>
+                    <div>
+                        <button className="bg-teal-500 px-4 py-2 font-semibold">Share Journey</button>
+                    </div>
+                </header>
                 <section>
                     {route.map(point => (
-                        <div className="my-4">
+                        <div key={point.location.id} className="my-4">
                             <StopPoint
-                            key={point.location.id}
                             destination={point.location.name}
                             estimatedDepartureTime={point.departure.estimated}
                             actualDepartureTime={point.departure.actual}
@@ -66,9 +78,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         skipped: routeItem.skipped,
         booking_cut_off_mins: routeItem.booking_cut_off_mins
     }));
+
+    const description = {
+        route_number: data.description.route_number,
+        calendar_date: data.description.calendar_date,
+    }
     return {
         props: {
-            route
+            route,
+            description
         }, // will be passed to the page component as props
     }
 }
