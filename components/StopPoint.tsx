@@ -5,16 +5,21 @@ type StopPointProps = {
     scheduledDepartureTime: string;
     isSkipped: boolean;
     reservationCutoffInMinutes: number;
+    isTerminating: boolean;
 };
 
 // TODO reorder props
-export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepartureTime, actualDepartureTime, scheduledDepartureTime, isSkipped, reservationCutoffInMinutes }) => {
+export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepartureTime, actualDepartureTime, scheduledDepartureTime, isSkipped, reservationCutoffInMinutes, isTerminating }) => {
 
     const calculateStopVerb = () => {
         const now = Date.now();
         const scheduledDate = Date.parse(scheduledDepartureTime);
         const actualDate = Date.parse(actualDepartureTime);
         const estimatedDate = Date.parse(estimatedDepartureTime);
+
+        if (isTerminating) { 
+            return "Arrived";
+        }
 
         if (scheduledDepartureTime && scheduledDate > now) {
             return "Scheduled";
@@ -41,7 +46,7 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
         if (scheduledDate && actualDate) {
             const diffrence = scheduledDate - actualDate;
             const isLate = diffrence < 0;
-            if (diffrence > -6000 && diffrence < 6000) {
+            if (diffrence >= -60000 && diffrence <= 60000) {
                 return null;
             }
             return <span className={`font-bold ${isLate ? "text-red-500" : "text-green-600"}`}>({(isLate ? "" : "+")}{Math.round(diffrence / 1000 / 60)})</span>;

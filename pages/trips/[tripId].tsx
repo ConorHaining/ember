@@ -44,15 +44,16 @@ const TripPage: NextPage<TripPageProps> = ({ route, description }) => {
                     </div>
                 </header>
                 <section>
-                    {route.map(point => (
+                    {route.map((point, index, array) => (
                         <div key={point.location.id} className="my-4">
                             <StopPoint
-                            destination={point.location.name}
-                            estimatedDepartureTime={point.departure.estimated}
-                            actualDepartureTime={point.departure.actual}
-                            scheduledDepartureTime={point.departure.scheduled}
-                            isSkipped={point.skipped}
-                            reservationCutoffInMinutes={point.booking_cut_off_mins} />
+                                destination={point.location.name}
+                                estimatedDepartureTime={point.departure.estimated}
+                                actualDepartureTime={point.departure.actual}
+                                scheduledDepartureTime={point.departure.scheduled}
+                                isSkipped={point.skipped}
+                                reservationCutoffInMinutes={point.booking_cut_off_mins} 
+                                isTerminating={array.length - 1 === index} />
                         </div>
                     ))}
                 </section>

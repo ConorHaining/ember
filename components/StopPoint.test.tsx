@@ -1,10 +1,6 @@
 // import dependencies
 import React from 'react'
 
-// import API mocking utilities from Mock Service Worker
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
-
 // import react-testing methods
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 
@@ -27,7 +23,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T12:58:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -41,7 +38,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T13:05:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -55,7 +53,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T13:01:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -69,7 +68,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T12:59:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -86,7 +86,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={"2022-07-02T13:00:00+00:00"}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -100,7 +101,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={''}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -114,7 +116,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={''}
                 isSkipped={false}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -128,7 +131,8 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={''}
                 isSkipped={true}
-                reservationCutoffInMinutes={0} />)
+                reservationCutoffInMinutes={0}
+                isTerminating={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
