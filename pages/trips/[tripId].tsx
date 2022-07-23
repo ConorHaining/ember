@@ -33,7 +33,7 @@ const TripPage: NextPage<TripPageProps> = ({ route, description }) => {
                 <h1 className="font-bold text-3xl">ember</h1>
             </header>
             <main className="py-6 px-4">
-                {!isOffline && <div className="bg-orange-400 py-2 px-4 text-orange-900 font-medium">Not connected to the internet. Live updates paused.</div>}
+                {isOffline && <div data-testid="offline-alert" className="bg-orange-400 py-2 px-4 text-orange-900 font-medium">Not connected to the internet. Live updates paused.</div>}
                 <header className="flex justify-between items-center">
                     <div>
                         <h2 className="text-2xl font-bold">Your journey on {description.route_number}</h2>
