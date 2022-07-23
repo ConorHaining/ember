@@ -14,6 +14,11 @@ type TripPageProps = {
             estimated: string;
             actual: string
         };
+        arrival: {
+            scheduled: string;
+            estimated: string;
+            actual: string
+        };
         location: {
             id: number;
             name: string;
@@ -51,6 +56,8 @@ const TripPage: NextPage<TripPageProps> = ({ route, description }) => {
                                 estimatedDepartureTime={point.departure.estimated}
                                 actualDepartureTime={point.departure.actual}
                                 scheduledDepartureTime={point.departure.scheduled}
+                                actualArrivalTime={point.arrival.actual}
+                                scheduledArrivalTime={point.arrival.scheduled}
                                 isSkipped={point.skipped}
                                 reservationCutoffInMinutes={point.booking_cut_off_mins} 
                                 isTerminating={array.length - 1 === index} />

@@ -24,7 +24,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T12:58:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -39,7 +39,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T13:05:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -54,7 +54,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T13:01:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -69,12 +69,82 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T12:59:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
             expect(timestamp.innerHTML).not.toContain("(+1)");
         });
+
+        describe("Arriving", () => {
+            it("should display how many minutes early the stop was when arriving", () => {
+                render(<StopPoint
+                    destination={''}
+                    estimatedDepartureTime={''}
+                    actualDepartureTime={''}
+                    scheduledDepartureTime={''}
+                    isSkipped={false}
+                    reservationCutoffInMinutes={0}
+                    isTerminating={true}
+                    actualArrivalTime={'2022-06-02T13:00:00+00:00'}
+                    scheduledArrivalTime={'2022-06-02T13:05:00+00:00'} />)
+    
+                const timestamp = screen.queryByTestId("timestamp")
+    
+                expect(timestamp.innerHTML).toContain("(+5)");
+            });
+    
+            it("should display how many minutes late the stop was when arriving", () => {
+                render(<StopPoint
+                    destination={''}
+                    estimatedDepartureTime={''}
+                    actualDepartureTime={''}
+                    scheduledDepartureTime={''}
+                    isSkipped={false}
+                    reservationCutoffInMinutes={0}
+                    isTerminating={true}
+                    actualArrivalTime={'2022-06-02T13:05:00+00:00'}
+                    scheduledArrivalTime={'2022-06-02T13:00:00+00:00'} />)
+    
+                const timestamp = screen.queryByTestId("timestamp")
+    
+                expect(timestamp.innerHTML).toContain("(-5)");
+            });
+
+            it("should not display how many minutes late the stop was when arriving and it is less than a minute", () => {
+                render(<StopPoint
+                    destination={''}
+                    estimatedDepartureTime={''}
+                    actualDepartureTime={''}
+                    scheduledDepartureTime={''}
+                    isSkipped={false}
+                    reservationCutoffInMinutes={0}
+                    isTerminating={true}
+                    actualArrivalTime={'2022-06-02T13:01:00+00:00'}
+                    scheduledArrivalTime={'2022-06-02T13:00:00+00:00'} />)
+    
+                const timestamp = screen.queryByTestId("timestamp")
+    
+                expect(timestamp.innerHTML).not.toContain("(-1)");
+            });
+
+            it("should not display how many minutes early the stop was when arriving and it is less than a minute", () => {
+                render(<StopPoint
+                    destination={''}
+                    estimatedDepartureTime={''}
+                    actualDepartureTime={''}
+                    scheduledDepartureTime={''}
+                    isSkipped={false}
+                    reservationCutoffInMinutes={0}
+                    isTerminating={true}
+                    actualArrivalTime={'2022-06-02T13:00:00+00:00'}
+                    scheduledArrivalTime={'2022-06-02T13:01:00+00:00'} />)
+    
+                const timestamp = screen.queryByTestId("timestamp")
+    
+                expect(timestamp.innerHTML).not.toContain("(+1)");
+            });
+        })
     })
 
     describe("calculateStopVerb", () => {
@@ -87,7 +157,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={"2022-07-02T13:00:00+00:00"}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -102,7 +172,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={''}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -117,7 +187,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={''}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -132,7 +202,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={''}
                 isSkipped={true}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
