@@ -149,6 +149,40 @@ describe("<StopPoint /> Component", () => {
 
     describe("calculateStopVerb", () => {
 
+        it("should use the 'Arrived' verb when isTerminating is true, and there is an actual time", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={false}
+                reservationCutoffInMinutes={0}
+                isTerminating={true}
+                actualArrivalTime={'2022-07-02T13:05:00+00:00'}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} />)
+
+            const timestamp = screen.queryByTestId("timestamp")
+
+            expect(timestamp.innerHTML).toContain("Arrived at");
+        });
+
+        it("should use the 'Arriving' verb when isTerminating is true, there is a scheduled time but no actual time", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={false}
+                reservationCutoffInMinutes={0}
+                isTerminating={true} 
+                actualArrivalTime={''}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} />)
+
+            const timestamp = screen.queryByTestId("timestamp")
+
+            expect(timestamp.innerHTML).toContain("Arriving at");
+        });
+
         it("should use the 'Scheduled' verb when a scheduled time is present & in the future", () => {
             render(<StopPoint
                 destination={''}

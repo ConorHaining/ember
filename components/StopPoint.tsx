@@ -26,9 +26,12 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
     const actualDate = Date.parse(actualDepartureTime);
     const estimatedDate = Date.parse(estimatedDepartureTime);
 
-    if (isTerminating) {
+    if (isTerminating && actualArrivalTime) {
         displayedTime = parseDate(actualArrivalTime);
         stopVerb = "Arrived";
+    } else if (isTerminating && !actualArrivalTime) {
+        displayedTime = parseDate(scheduledArrivalTime);
+        stopVerb = "Arriving";
     } else if (scheduledDepartureTime && scheduledDate > now) {
         stopVerb = "Scheduled";
     } else if (actualDepartureTime && actualDate < now) {
