@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import { StopPoint } from "../../components/StopPoint";
+import WebShareButton from "../../components/WebShareButton";
 import useOffline from "../../hooks/useOffline";
 
 type TripPageProps = {
@@ -45,7 +46,7 @@ const TripPage: NextPage<TripPageProps> = ({ route, description }) => {
                         <h2 className="text-xl font-semibold text-slate-700">{description.calendar_date}</h2>
                     </div>
                     <div>
-                        <button className="bg-teal-400 hover:bg-teal-500 active:bg-teal-600 px-4 py-2 font-semibold">Share Journey</button>
+                        <WebShareButton tripId={description.tripId} />
                     </div>
                 </header>
                 <section>
@@ -94,6 +95,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const description = {
         route_number: data.description.route_number,
         calendar_date: data.description.calendar_date,
+        tripId
     }
     return {
         props: {
