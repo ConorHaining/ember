@@ -7,6 +7,10 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom'
 import TripPage from './[tripId]'
+import useOffline from '../../hooks/useOffline';
+
+jest.mock('../../hooks/useOffline');
+const mockUseOffline = useOffline as jest.MockedFunction<typeof useOffline>;
 
 describe("<TripPage /> Page", () => {
 
@@ -15,9 +19,8 @@ describe("<TripPage /> Page", () => {
         jest.setSystemTime(new Date("2022-07-01"));
     })
 
-    it.todo("should show an alert when the user is offline", () => {
-        const goOffline = new window.Event('offline');
-        window.dispatchEvent(goOffline);
+    it("should show an alert when the user is offline", () => {
+        mockUseOffline.mockReturnValue([true]);
         render(<TripPage
             route={[]}
             description={{ route_number: "T1", calendar_date: "2022-07-22" }}
@@ -29,6 +32,7 @@ describe("<TripPage /> Page", () => {
     })
 
     it("should not show an alert when the user is online", () => {
+        mockUseOffline.mockReturnValue([false]);
         render(<TripPage
             route={[]}
             description={{ route_number: "T1", calendar_date: "2022-07-22" }}
