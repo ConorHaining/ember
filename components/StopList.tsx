@@ -53,6 +53,7 @@ const StopList: React.FC<{ tripId: string }> = ({ tripId }) => {
                         estimatedDepartureTime={point.departure.estimated}
                         actualDepartureTime={point.departure.actual}
                         scheduledDepartureTime={point.departure.scheduled}
+                        estimatedArrivalTime={point.arrival.estimated}
                         actualArrivalTime={point.arrival.actual}
                         scheduledArrivalTime={point.arrival.scheduled}
                         isSkipped={point.skipped}

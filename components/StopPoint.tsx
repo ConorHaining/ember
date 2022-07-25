@@ -5,6 +5,7 @@ type StopPointProps = {
     estimatedDepartureTime: string;
     actualDepartureTime: string;
     scheduledDepartureTime: string;
+    estimatedArrivalTime: string;
     actualArrivalTime: string;
     scheduledArrivalTime: string;
     isSkipped: boolean;
@@ -14,7 +15,7 @@ type StopPointProps = {
 };
 
 // TODO reorder props
-export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepartureTime, actualDepartureTime, scheduledDepartureTime, actualArrivalTime, scheduledArrivalTime, isSkipped, reservationCutoffInMinutes, isTerminating, isOrigin }) => {
+export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepartureTime, actualDepartureTime, scheduledDepartureTime, estimatedArrivalTime,actualArrivalTime, scheduledArrivalTime, isSkipped, reservationCutoffInMinutes, isTerminating, isOrigin }) => {
 
     const parseDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -32,9 +33,12 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
     if (isTerminating && actualArrivalTime) {
         displayedTime = parseDate(actualArrivalTime);
         stopVerb = "Arrived";
-    } else if (isTerminating && !actualArrivalTime) {
+    } else if (isTerminating && !actualArrivalTime && !estimatedArrivalTime) {
         displayedTime = parseDate(scheduledArrivalTime);
         stopVerb = "Arriving";
+    } else if (isTerminating && estimatedArrivalTime) {
+        displayedTime = parseDate(estimatedArrivalTime);
+        stopVerb = "Estimated";
     } else if (estimatedDepartureTime && estimatedDate > now) {
         displayedTime = parseDate(estimatedDepartureTime)
         stopVerb = "Estimated";
@@ -62,9 +66,16 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
             actualTime = new Date(actualDepartureTime);
             break;
 
-        case "Estimated":
-            expectedTime = new Date(scheduledDepartureTime);
-            actualTime = new Date(estimatedDepartureTime);
+        case "Estimated": {
+            if(isTerminating) {
+                expectedTime = new Date(scheduledArrivalTime);
+                actualTime = new Date(estimatedArrivalTime);
+            } else {
+                expectedTime = new Date(scheduledDepartureTime);
+                actualTime = new Date(estimatedDepartureTime);
+            }
+
+        }
             break;
 
         default:
