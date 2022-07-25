@@ -5,7 +5,6 @@ const useNetworkInformation = () => {
     const [effectiveNetworkType, setEffectiveNetworkType] = useState("unknown");
 
     const updateNetwork = (networkInformation) => {
-        console.log(networkInformation)
         setNetworkType(prevState => networkInformation.type);
         setEffectiveNetworkType(prevState => networkInformation.effectiveType);
     }
