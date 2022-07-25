@@ -15,7 +15,7 @@ const WebShareButton: React.FC<WebShareButtonProps> = ({tripId}) => {
         const payload: ShareData = {
             text: "A journey aboard Ember",
             title: "A journey aboard Ember",
-            url: `http://localhost:3000/trips/${tripId}`, // TODO make host aware
+            url: `${process.env.APP_ROOT_URL}/trips/${tripId}`, // TODO make host aware
         };
 
         try {
