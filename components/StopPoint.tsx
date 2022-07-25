@@ -71,9 +71,6 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
             break;
     }
 
-    // const scheduledDate = Date.parse(scheduledDepartureTime);
-    // const actualDate = Date.parse(actualDepartureTime);
-
     if (expectedTime && actualTime) {
         const diffrence = expectedTime - actualTime;
         const isLate = diffrence < 0;
@@ -81,20 +78,6 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
             lateIndicator = <span className={`font-bold ${isLate ? "text-red-500" : "text-green-600"}`}>({(isLate ? "" : "+")}{Math.round(diffrence / 1000 / 60)})</span>;
         }
     }
-
-    const timeDifference = () => {
-        const scheduledDate = Date.parse(scheduledDepartureTime);
-        const actualDate = Date.parse(actualDepartureTime);
-
-        if (scheduledDate && actualDate) {
-            const diffrence = scheduledDate - actualDate;
-            const isLate = diffrence < 0;
-            if (diffrence >= -60000 && diffrence <= 60000) {
-                return null;
-            }
-            return <span className={`font-bold ${isLate ? "text-red-500" : "text-green-600"}`}>({(isLate ? "" : "+")}{Math.round(diffrence / 1000 / 60)})</span>;
-        }
-    };
 
     const calculateStopDot = () => {
         if (isSkipped) {
