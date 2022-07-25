@@ -24,7 +24,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T12:58:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -39,7 +39,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T13:05:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -54,7 +54,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T13:01:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -69,7 +69,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={'2022-06-02T12:59:00+00:00'}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -87,7 +87,7 @@ describe("<StopPoint /> Component", () => {
                     reservationCutoffInMinutes={0}
                     isTerminating={true}
                     actualArrivalTime={'2022-06-02T13:00:00+00:00'}
-                    scheduledArrivalTime={'2022-06-02T13:05:00+00:00'} />)
+                    scheduledArrivalTime={'2022-06-02T13:05:00+00:00'} isOrigin={false} />)
     
                 const timestamp = screen.queryByTestId("timestamp")
     
@@ -104,7 +104,7 @@ describe("<StopPoint /> Component", () => {
                     reservationCutoffInMinutes={0}
                     isTerminating={true}
                     actualArrivalTime={'2022-06-02T13:05:00+00:00'}
-                    scheduledArrivalTime={'2022-06-02T13:00:00+00:00'} />)
+                    scheduledArrivalTime={'2022-06-02T13:00:00+00:00'} isOrigin={false} />)
     
                 const timestamp = screen.queryByTestId("timestamp")
     
@@ -121,7 +121,7 @@ describe("<StopPoint /> Component", () => {
                     reservationCutoffInMinutes={0}
                     isTerminating={true}
                     actualArrivalTime={'2022-06-02T13:01:00+00:00'}
-                    scheduledArrivalTime={'2022-06-02T13:00:00+00:00'} />)
+                    scheduledArrivalTime={'2022-06-02T13:00:00+00:00'} isOrigin={false} />)
     
                 const timestamp = screen.queryByTestId("timestamp")
     
@@ -138,7 +138,7 @@ describe("<StopPoint /> Component", () => {
                     reservationCutoffInMinutes={0}
                     isTerminating={true}
                     actualArrivalTime={'2022-06-02T13:00:00+00:00'}
-                    scheduledArrivalTime={'2022-06-02T13:01:00+00:00'} />)
+                    scheduledArrivalTime={'2022-06-02T13:01:00+00:00'} isOrigin={false} />)
     
                 const timestamp = screen.queryByTestId("timestamp")
     
@@ -159,7 +159,7 @@ describe("<StopPoint /> Component", () => {
                 reservationCutoffInMinutes={0}
                 isTerminating={true}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
-                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} />)
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -174,9 +174,9 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={""}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={true} 
+                isTerminating={true}
                 actualArrivalTime={''}
-                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} />)
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -191,7 +191,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={"2022-07-02T13:00:00+00:00"}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -206,7 +206,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={''}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -221,7 +221,7 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={''}
                 isSkipped={false}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -236,11 +236,103 @@ describe("<StopPoint /> Component", () => {
                 scheduledDepartureTime={''}
                 isSkipped={true}
                 reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
             expect(timestamp).toBeNull();
         })
+    });
+
+    describe("calculateStopDots", () => {
+        it("should always include the dot class to position the dots", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={false}
+                reservationCutoffInMinutes={0}
+                isTerminating={true}
+                actualArrivalTime={'2022-07-02T13:05:00+00:00'}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
+                isOrigin={false} />)
+
+            const stopDot = screen.queryByTestId("stop-dot")
+
+            expect(stopDot.classList.value).toContain("dot");
+        });
+
+        it("should display a origin dot when isOrigin is true", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={false}
+                reservationCutoffInMinutes={0}
+                isTerminating={false}
+                actualArrivalTime={'2022-07-02T13:05:00+00:00'}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
+                isOrigin={true} />)
+
+            const stopDot = screen.queryByTestId("stop-dot")
+
+            expect(stopDot.classList.value).toContain("originDot");
+        });
+
+        it("should display a terminating dot when isTerminating is true", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={false}
+                reservationCutoffInMinutes={0}
+                isTerminating={true}
+                actualArrivalTime={'2022-07-02T13:05:00+00:00'}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
+                isOrigin={false} />)
+
+            const stopDot = screen.queryByTestId("stop-dot")
+
+            expect(stopDot.classList.value).toContain("terminatingDot");
+        });
+
+        it("should display a skipped dot when isSkipped is true", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={true}
+                reservationCutoffInMinutes={0}
+                isTerminating={false}
+                actualArrivalTime={'2022-07-02T13:05:00+00:00'}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
+                isOrigin={false} />)
+
+            const stopDot = screen.queryByTestId("stop-dot")
+
+            expect(stopDot.classList.value).toContain("skippedDot");
+        });
+
+        it("should display a regular dot when isSkipped, isOrigin, and isTerminating are all false", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={''}
+                actualDepartureTime={''}
+                scheduledDepartureTime={""}
+                isSkipped={false}
+                reservationCutoffInMinutes={0}
+                isTerminating={false}
+                actualArrivalTime={'2022-07-02T13:05:00+00:00'}
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
+                isOrigin={false} />)
+
+            const stopDot = screen.queryByTestId("stop-dot")
+
+            expect(stopDot.classList.value).toContain("stopDot");
+        });
     });
 });

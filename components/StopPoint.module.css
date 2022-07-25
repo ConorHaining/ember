@@ -1,0 +1,22 @@
+.dot {
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.stopDot {
+    background-image: url("/stop.svg");
+}
+
+.originDot {
+    background-image: url("/originStop.svg");
+}
+
+.terminatingDot {
+    background-image: url("/terminatingStop.svg");
+}
+
+.skippedDot {
+    background-image: url("/skippedStop.svg");
+}

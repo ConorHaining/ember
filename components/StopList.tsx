@@ -21,7 +21,7 @@ const StopList: React.FC<{tripId: string}> = ({tripId}) => {
 
     return (
         data.route.map((point, index, array) => (
-            <div key={point.location.id} className="my-4">
+            <div key={point.location.id}>
                 <StopPoint
                     destination={point.location.name}
                     estimatedDepartureTime={point.departure.estimated}
@@ -31,7 +31,8 @@ const StopList: React.FC<{tripId: string}> = ({tripId}) => {
                     scheduledArrivalTime={point.arrival.scheduled}
                     isSkipped={point.skipped}
                     reservationCutoffInMinutes={point.booking_cut_off_mins}
-                    isTerminating={array.length - 1 === index} />
+                    isTerminating={array.length - 1 === index} 
+                    isOrigin={index === 0} />
             </div>
         ))
     );
