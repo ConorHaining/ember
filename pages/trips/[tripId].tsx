@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, NextPage } from "next";
-import useSWR, { SWRConfig } from 'swr';
-import { StopPoint } from "../../components/StopPoint";
+import { SWRConfig } from 'swr';
+import StopList from "../../components/StopList";
 import WebShareButton from "../../components/WebShareButton";
 import useNetworkInformation from "../../hooks/useNetworkInformation";
 import useOffline from "../../hooks/useOffline";
@@ -36,8 +36,6 @@ type TripPageProps = {
     }
 };
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
-
 const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
 
     const [isOffline] = useOffline();
@@ -69,39 +67,6 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
             </main>
         </>
     )
-}
-
-const StopList: React.FC<{tripId: string}> = ({tripId}) => {
-
-    const [networkType, effectiveNetworkType] = useNetworkInformation();
-
-    let refreshInterval;
-    if (networkType === 'wifi') {
-        refreshInterval = 5000;
-    } else if (effectiveNetworkType === '4g') {
-        refreshInterval = 15000;
-    } else {
-        refreshInterval = 30000;
-    }
-
-    const { data, error } = useSWR(`https://api.ember.to/v1/trips/${tripId}`, fetcher, { refreshInterval });
-
-    return (
-        data.route.map((point, index, array) => (
-            <div key={point.location.id} className="my-4">
-                <StopPoint
-                    destination={point.location.name}
-                    estimatedDepartureTime={point.departure.estimated}
-                    actualDepartureTime={point.departure.actual}
-                    scheduledDepartureTime={point.departure.scheduled}
-                    actualArrivalTime={point.arrival.actual}
-                    scheduledArrivalTime={point.arrival.scheduled}
-                    isSkipped={point.skipped}
-                    reservationCutoffInMinutes={point.booking_cut_off_mins}
-                    isTerminating={array.length - 1 === index} />
-            </div>
-        ))
-    );
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
