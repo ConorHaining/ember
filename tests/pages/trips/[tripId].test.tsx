@@ -70,7 +70,7 @@ describe("<TripPage /> Page", () => {
     
             const wifiAlert = screen.queryByTestId("wifi-alert");
     
-            expect(wifiAlert).not.toBeNull();
+            expect(wifiAlert).toBeNull();
         })
     
         it("should not show an alert when the user is connected with wifi", () => {
@@ -84,7 +84,7 @@ describe("<TripPage /> Page", () => {
     
             const wifiAlert = screen.queryByTestId("wifi-alert");
     
-            expect(wifiAlert).toBeNull();
+            expect(wifiAlert).not.toBeNull();
         })
 
         it("should not show an alert when network information isn't supported", () => {

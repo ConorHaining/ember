@@ -61,7 +61,7 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
             </header>
             <main className="py-6 px-4">
                 {isOffline && <div data-testid="offline-alert"><Alert variant="warning">Not connected to the internet. Live updates paused.</Alert></div>}
-                {networkType && networkType === 'wifi' && <div data-testid="wifi-alert">
+                {networkType && networkType !== 'wifi' && <div data-testid="wifi-alert">
                     <Alert variant="information">Our buses have superfast 5G onboard</Alert>
                 </div>}
                 <header className="flex justify-between items-center">
