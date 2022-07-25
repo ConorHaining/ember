@@ -32,6 +32,11 @@ type TripPageProps = {
         calendar_date: string;
         route_number: string;
         tripId: string;
+        notes_details?: {
+            is_public: boolean;
+            updated_at: string;
+            rendered_notes: string;
+        }
     },
     fallback: {
         [key: string]: {
@@ -70,6 +75,7 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
                     </div>
                 </header>
                 <section>
+                    {description.notes_details?.is_public ? <Alert variant="danger"><span data-testid="journey-alert" dangerouslySetInnerHTML={{"__html": description.notes_details.rendered_notes}}></span></Alert> : null}
                         <SWRConfig value={{ fallback }}>
                             <StopList tripId={description.tripId} />
                         </SWRConfig>
@@ -104,7 +110,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const description = {
         route_number: data.description.route_number,
         calendar_date: data.description.calendar_date,
-        tripId
+        tripId,
+        ...(data.description.notes_details ? {notes_details: data.description.notes_details}: {})
     }
 
     const apiUrl = `https://api.ember.to/v1/trips/${tripId}`;

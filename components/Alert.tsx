@@ -15,7 +15,7 @@ const Alert: React.FC<AlertProps> = ({variant, children}) => {
 
             case "danger":
 
-                return "text-orange-900 bg-orange-500";
+                return "text-red-900 bg-red-200";
 
             case "information":
 

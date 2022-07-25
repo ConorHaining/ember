@@ -102,4 +102,45 @@ describe("<TripPage /> Page", () => {
         })
     })
 
+    describe("Journey Alert", () => {
+        it("should display a journey alert when one exists, and it is public", () => {
+            render(<TripPage
+                fallback={{"https://example.com:/123": {
+                    route: []
+                }}}
+                description={{ tripId: "123", route_number: "T1", calendar_date: "2022-07-22", notes_details: { is_public: true , rendered_notes: "", updated_at: ""} }}
+            />);
+    
+            const journeyAlert = screen.queryByTestId("journey-alert");
+    
+            expect(journeyAlert).not.toBeNull();
+        });
+
+        it("should not display a journey alert when one exists, but it is not public", () => {
+            render(<TripPage
+                fallback={{"https://example.com:/123": {
+                    route: []
+                }}}
+                description={{ tripId: "123", route_number: "T1", calendar_date: "2022-07-22", notes_details: { is_public: false , rendered_notes: "", updated_at: ""} }}
+            />);
+    
+            const journeyAlert = screen.queryByTestId("journey-alert");
+    
+            expect(journeyAlert).toBeNull();
+        });
+
+        it("should not display a journey alert when one does not exist", () => {
+            render(<TripPage
+                fallback={{"https://example.com:/123": {
+                    route: []
+                }}}
+                description={{ tripId: "123", route_number: "T1", calendar_date: "2022-07-22" }}
+            />);
+    
+            const journeyAlert = screen.queryByTestId("journey-alert");
+    
+            expect(journeyAlert).toBeNull();
+        });
+    })
+
 });
