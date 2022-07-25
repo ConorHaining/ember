@@ -18,7 +18,7 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
 
     const parseDate = (dateString: string) => {
         const date = new Date(dateString);
-        return date.toLocaleTimeString('en-GB', { timeZone: "Europe/London" });
+        return date.toLocaleTimeString('en-GB', { timeZone: "Europe/London", hour: '2-digit', minute: '2-digit' });
     };
 
     let displayedTime = parseDate(scheduledDepartureTime);
