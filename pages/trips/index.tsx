@@ -71,7 +71,6 @@ const TripsListPage: NextPage<TripsListPageProps> = ({ trips }) => {
 }
 
 export async function getServerSideProps() {
-    console.log(process.env)
     const trips = await fetch(`${process.env.APP_ROOT_URL}/api/trips`).then(res => res.json());
 
     return {

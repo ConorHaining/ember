@@ -9,13 +9,14 @@ const WebShareButton: React.FC<WebShareButtonProps> = ({tripId}) => {
 
     useEffect(() => {
         if (navigator.share) { setCanShare(true); }
+        console.log(process.env.APP_ROOT_URL)
     }, []);
 
     const onClickHandler =  async (e) => {
         const payload: ShareData = {
             text: "A journey aboard Ember",
             title: "A journey aboard Ember",
-            url: `${process.env.APP_ROOT_URL}/trips/${tripId}`, // TODO make host aware
+            url: `/trips/${tripId}`, // TODO make host aware
         };
 
         try {

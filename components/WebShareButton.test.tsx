@@ -42,11 +42,10 @@ describe("<WebShareButton /> Component", () => {
 
     it("should use the given trip id in the payload url", () => {
         render(<WebShareButton tripId="123" />);
-        process.env.APP_ROOT_URL = "http://example.com";
         const mockPayload = {
             text: "A journey aboard Ember",
             title: "A journey aboard Ember",
-            url: `http://example.com/trips/123`,
+            url: "/trips/123",
         };
 
         const webShareButton = screen.queryByTestId("web-share")
