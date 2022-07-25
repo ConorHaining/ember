@@ -6,14 +6,14 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 
 // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom'
-import TripPage from './[tripId]'
-import '../../components/StopList';
-import useOffline from '../../hooks/useOffline';
-import useNetworkInformation from '../../hooks/useNetworkInformation';
+import TripPage from '../../../pages/trips/[tripId]'
+import '../../../components/StopList';
+import useOffline from '../../../hooks/useOffline';
+import useNetworkInformation from '../../../hooks/useNetworkInformation';
 
-jest.mock('../../components/StopList');
-jest.mock('../../hooks/useOffline');
-jest.mock('../../hooks/useNetworkInformation');
+jest.mock('../../../components/StopList');
+jest.mock('../../../hooks/useOffline');
+jest.mock('../../../hooks/useNetworkInformation');
 
 const mockUseOffline = useOffline as jest.MockedFunction<typeof useOffline>;
 const mockUseNetworkInformation = useNetworkInformation as jest.MockedFunction<typeof useNetworkInformation>;
