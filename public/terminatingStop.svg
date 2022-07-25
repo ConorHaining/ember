@@ -1,6 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="100mm" viewBox="0 0 50 100" version="1.1" id="svg8">
-  <g id="layer1">
-    <path style="fill:none;stroke:#14b8a6;stroke-width:4.26439;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M25.108 0v50.514" id="FromLine"/>
-    <circle style="fill:#14b8a6;stroke:#0f766e;stroke-width:6;stroke-linejoin:round" id="Blob" cx="25" cy="50" r="13.788"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="150mm" viewBox="0 0 50 150" version="1.1" id="svg8">
+  <path style="fill:none;stroke:#14b8a6;stroke-width:4.26439;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M25.108 0v72.739" id="FromLine"/>
+  <circle style="fill:#14b8a6;stroke:#0f766e;stroke-width:6;stroke-linejoin:round" id="Blob" cx="25" cy="75" r="13.788"/>
 </svg>

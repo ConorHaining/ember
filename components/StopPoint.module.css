@@ -1,12 +1,13 @@
 .dot {
     background-position-x: center;
     background-position-y: center;
-    background-size: contain;
+    background-size: 3em;
     background-repeat: no-repeat;
 }
 
 .stopDot {
     background-image: url("/stop.svg");
+    background-repeat: repeat-y;
 }
 
 .originDot {
@@ -19,4 +20,5 @@
 
 .skippedDot {
     background-image: url("/skippedStop.svg");
+    background-repeat: repeat-y;
 }
