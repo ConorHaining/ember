@@ -137,7 +137,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
         props: {
             fallback: {
-                [apiUrl]: route
+                [apiUrl]: {
+                    route
+                }
             },
             description
         }, // will be passed to the page component as props
