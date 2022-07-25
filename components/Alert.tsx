@@ -28,7 +28,7 @@ const Alert: React.FC<AlertProps> = ({variant, children}) => {
     }
 
     return (
-        <div data-testid="offline-alert" className={`py-2 px-4 font-medium ${calculateClassColours()}`}>{children}</div>
+        <div className={`py-2 px-4 font-medium ${calculateClassColours()}`}>{children}</div>
     )
 }
 

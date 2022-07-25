@@ -33,7 +33,9 @@ type TripPageProps = {
         tripId: string;
     },
     fallback: {
-        route: StopPointData[]
+        [key: string]: {
+            route: StopPointData[]
+        }
     }
 };
 
@@ -48,8 +50,10 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
                 <h1 className="font-bold text-3xl">ember</h1>
             </header>
             <main className="py-6 px-4">
-                {isOffline && <Alert variant="warning">Not connected to the internet. Live updates paused.</Alert>}
-                {networkType && networkType === 'wifi' && <Alert variant="information">Our buses have superfast 5G onboard</Alert>}
+                {isOffline && <div data-testid="offline-alert"><Alert variant="warning">Not connected to the internet. Live updates paused.</Alert></div>}
+                {networkType && networkType === 'wifi' && <div data-testid="wifi-alert">
+                    <Alert variant="information">Our buses have superfast 5G onboard</Alert>
+                </div>}
                 <header className="flex justify-between items-center">
                     <div>
                         <h2 className="text-2xl font-bold">Your journey on {description.route_number}</h2>
