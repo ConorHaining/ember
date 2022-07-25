@@ -53,7 +53,7 @@ const TripsListPage: NextPage<TripsListPageProps> = ({ trips }) => {
                     const isActive = parsedDeparture <= Date.now() && parsedDeparture + 1000 * 60 * 60 * 2 >= Date.now();
                     return (
                         <div key={trip.uid} className="my-2 p-2 border-b border-slate-700">
-                            {isActive ? <div className="text-green-700 font-semibold">
+                            {isActive ? <div className="text-green-700 font-bold">
                                 Active Journey *
                             </div> : null}
                             <div>
