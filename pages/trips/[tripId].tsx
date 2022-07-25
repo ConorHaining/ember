@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext, NextPage } from "next";
+import Link from "next/link";
 import { SWRConfig } from 'swr';
 import Alert from "../../components/Alert";
 import StopList from "../../components/StopList";
@@ -47,7 +48,11 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
     return (
         <>
             <header className="bg-teal-500 py-1 px-6">
-                <h1 className="font-bold text-3xl">ember</h1>
+                <Link href={"/trips"}>
+                <a>
+                    <h1 className="font-bold text-3xl">ember</h1>
+                </a>
+                </Link>
             </header>
             <main className="py-6 px-4">
                 {isOffline && <div data-testid="offline-alert"><Alert variant="warning">Not connected to the internet. Live updates paused.</Alert></div>}
