@@ -50,9 +50,9 @@ const TripsListPage: NextPage<TripsListPageProps> = ({ trips }) => {
                 <Alert variant="information">An &apos;Active Journey&apos; is one which has departed in the past two hours</Alert>
                 {trips.map(trip => {
                     const parsedDeparture = Date.parse(trip.departure);
-                    const isActive = parsedDeparture < Date.now() && parsedDeparture < Date.now() + (6000 * 120);
+                    const isActive = parsedDeparture <= Date.now() && parsedDeparture + 1000 * 60 * 60 * 2 >= Date.now();
                     return (
-                        <div key={trip.uid} className="my-2 p-2 border border-slate-700">
+                        <div key={trip.uid} className="my-2 p-2 border-b border-slate-700">
                             {isActive ? <div className="text-green-700 font-semibold">
                                 Active Journey *
                             </div> : null}
