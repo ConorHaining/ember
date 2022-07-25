@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import Alert from "../../components/Alert";
 
 type TripsListPageProps = {
     trips: {
@@ -17,6 +18,36 @@ const TripsListPage: NextPage<TripsListPageProps> = ({ trips }) => {
                 <h1 className="font-bold text-3xl">ember</h1>
             </header>
             <main className="py-6 px-4">
+
+                <div className="my-2 p-2 border border-slate-700">
+                    <div>
+                        <strong>UID: </strong> <Link href={`trips/hybD6XS9GbdvFuH5PyXdmv`}><a className="text-sky-700 underline">hybD6XS9GbdvFuH5PyXdmv</a></Link>
+                    </div>
+                    <div>
+                    This trip which has ended - it was quite delayed and has trip notes.
+                    </div>
+                </div>
+
+                <div className="my-2 p-2 border border-slate-700">
+                    <div>
+                        <strong>UID: </strong> <Link href={`trips/6WA7D6hnGi7EexmkxD5Znw`}><a className="text-sky-700 underline">6WA7D6hnGi7EexmkxD5Znw</a></Link>
+                    </div>
+                    <div>
+                    This trip which is scheduled to start in the future
+                    </div>
+                </div>
+
+                <div className="my-2 p-2 border border-slate-700">
+                    <div>
+                        <strong>UID: </strong> <Link href={`trips/NAaD775fjZzBe8isvXBqDR`}><a className="text-sky-700 underline">NAaD775fjZzBe8isvXBqDR</a></Link>
+                    </div>
+                    <div>
+                    This trip which has ended and arrived slightly early
+                    </div>
+                </div>
+
+                <h2 className="text-2xl">Upcoming Journeys</h2>
+                <Alert variant="information">An &apos;Active Journey&apos; is one which has departed in the past two hours</Alert>
                 {trips.map(trip => {
                     const parsedDeparture = Date.parse(trip.departure);
                     const isActive = parsedDeparture < Date.now() && parsedDeparture < Date.now() + (6000 * 120);
@@ -24,7 +55,7 @@ const TripsListPage: NextPage<TripsListPageProps> = ({ trips }) => {
                         <div key={trip.uid} className="my-2 p-2 border border-slate-700">
                             {isActive ? <div className="text-green-700 font-semibold">
                                 Active Journey *
-                            </div>: null}
+                            </div> : null}
                             <div>
                                 <strong>UID: </strong> <Link href={`trips/${trip.uid}`} prefetch={isActive}><a className="text-sky-700 underline">{trip.uid}</a></Link>
                             </div>
