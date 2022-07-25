@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const useNetworkInformation = () => {
-    const [networkType, setNetworkType] = useState("unknown");
-    const [effectiveNetworkType, setEffectiveNetworkType] = useState("unknown");
+    const [networkType, setNetworkType] = useState(undefined);
+    const [effectiveNetworkType, setEffectiveNetworkType] = useState(undefined);
 
     const updateNetwork = (networkInformation) => {
         setNetworkType(prevState => networkInformation.type);
