@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import { SWRConfig } from 'swr';
+import Alert from "../../components/Alert";
 import StopList from "../../components/StopList";
 import WebShareButton from "../../components/WebShareButton";
 import useNetworkInformation from "../../hooks/useNetworkInformation";
@@ -39,7 +40,7 @@ type TripPageProps = {
 const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
 
     const [isOffline] = useOffline();
-    const [networkType, effectiveNetworkType] = useNetworkInformation();
+    const [networkType] = useNetworkInformation();
 
     return (
         <>
@@ -47,8 +48,8 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
                 <h1 className="font-bold text-3xl">ember</h1>
             </header>
             <main className="py-6 px-4">
-                {isOffline && <div data-testid="offline-alert" className="bg-orange-400 py-2 px-4 text-orange-900 font-medium">Not connected to the internet. Live updates paused.</div>}
-                {networkType && networkType === 'wifi' && <div data-testid="wifi-alert" className="bg-sky-400 py-2 px-4 text-sky-900 font-medium">Our buses have superfast 5G onboard</div>}
+                {isOffline && <Alert variant="warning">Not connected to the internet. Live updates paused.</Alert>}
+                {networkType && networkType === 'wifi' && <Alert variant="information">Our buses have superfast 5G onboard</Alert>}
                 <header className="flex justify-between items-center">
                     <div>
                         <h2 className="text-2xl font-bold">Your journey on {description.route_number}</h2>
