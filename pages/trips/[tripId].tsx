@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext, NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { SWRConfig } from 'swr';
 import Alert from "../../components/Alert";
@@ -53,6 +54,9 @@ const TripPage: NextPage<TripPageProps> = ({ fallback, description }) => {
 
     return (
         <>
+            <Head>
+                <title>Your journey on {description.route_number} on {description.calendar_date}</title>
+            </Head>
             <header className="bg-teal-500 py-1 px-6">
                 <Link href={"/trips"}>
                 <a>
