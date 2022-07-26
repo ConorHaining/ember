@@ -89,8 +89,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const tripId = context.params["tripId"];
 
-    // TODO error handle bad fetch
-    const data = await fetch(`https://api.ember.to/v1/trips/${tripId}/`).then(res => res.json());
+    let data;
+    try {
+        data = await fetch(`https://api.ember.to/v1/trips/${tripId}/`).then(res => res.json());
+    } catch (error) {
+        console.error(error);
+        return {
+            notFound: true
+        }
+    }
 
     /**
      * Thin out the request shave some bytes
