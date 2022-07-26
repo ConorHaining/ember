@@ -12,7 +12,7 @@ describe("<StopPoint /> Component", () => {
 
     beforeAll(() => {
         jest.useFakeTimers();
-        jest.setSystemTime(new Date("2022-07-01"));
+        jest.setSystemTime(Date.parse("2022-07-01T00:00:00+01:00"));
     })
 
     describe("Lateness Indicator", () => {
@@ -23,8 +23,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T12:58:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -38,8 +37,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T13:05:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -53,8 +51,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T13:01:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -68,8 +65,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={'2022-06-02T12:59:00+00:00'}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -190,10 +186,9 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
                 isTerminating={true}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
-                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} isOrigin={false} estimatedArrivalTime={''} />)
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -207,10 +202,9 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
                 isTerminating={true}
                 actualArrivalTime={''}
-                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} isOrigin={false} estimatedArrivalTime={''} />)
+                scheduledArrivalTime={'2022-07-02T13:00:00+00:00'} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -224,8 +218,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={"2022-07-02T13:00:00+00:00"}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -239,8 +232,12 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={'2022-06-02T13:00:00+00:00'}
                 scheduledDepartureTime={''}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false}
+                actualArrivalTime={''}
+                scheduledArrivalTime={''}
+                isOrigin={false}
+                estimatedArrivalTime={''}
+                detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -254,8 +251,26 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={''}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
+
+            const timestamp = screen.queryByTestId("timestamp")
+
+            expect(timestamp.innerHTML).toContain("Estimated at");
+        });
+
+        it("should use the 'Estimated' verb when a depature estimate time is present & no actual time is present yet, and it is not terminating", () => {
+            render(<StopPoint
+                destination={''}
+                estimatedDepartureTime={'2022-06-30T23:59:00+01:00'}
+                actualDepartureTime={''}
+                scheduledDepartureTime={'2022-06-30T23:55:00+01:00'}
+                isSkipped={false}
+                isTerminating={false}
+                actualArrivalTime={''}
+                scheduledArrivalTime={''}
+                isOrigin={false}
+                estimatedArrivalTime={''}
+                detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -269,8 +284,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={''}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
-                isTerminating={true} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={'2022-07-02T13:00:00+00:00'} />)
+                isTerminating={true} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={'2022-07-02T13:00:00+00:00'} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -284,8 +298,7 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={''}
                 isSkipped={true}
-                reservationCutoffInMinutes={0}
-                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} />)
+                isTerminating={false} actualArrivalTime={''} scheduledArrivalTime={''} isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const timestamp = screen.queryByTestId("timestamp")
 
@@ -301,11 +314,10 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
                 isTerminating={true}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
                 scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
-                isOrigin={false} estimatedArrivalTime={''} />)
+                isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const stopDot = screen.queryByTestId("stop-dot")
 
@@ -319,11 +331,10 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
                 isTerminating={false}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
                 scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
-                isOrigin={true} estimatedArrivalTime={''} />)
+                isOrigin={true} estimatedArrivalTime={''} detailedName={''} />)
 
             const stopDot = screen.queryByTestId("stop-dot")
 
@@ -337,11 +348,10 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
                 isTerminating={true}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
                 scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
-                isOrigin={false} estimatedArrivalTime={''} />)
+                isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const stopDot = screen.queryByTestId("stop-dot")
 
@@ -355,11 +365,10 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={true}
-                reservationCutoffInMinutes={0}
                 isTerminating={false}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
                 scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
-                isOrigin={false} estimatedArrivalTime={''} />)
+                isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const stopDot = screen.queryByTestId("stop-dot")
 
@@ -373,11 +382,10 @@ describe("<StopPoint /> Component", () => {
                 actualDepartureTime={''}
                 scheduledDepartureTime={""}
                 isSkipped={false}
-                reservationCutoffInMinutes={0}
                 isTerminating={false}
                 actualArrivalTime={'2022-07-02T13:05:00+00:00'}
                 scheduledArrivalTime={'2022-07-02T13:00:00+00:00'}
-                isOrigin={false} estimatedArrivalTime={''} />)
+                isOrigin={false} estimatedArrivalTime={''} detailedName={''} />)
 
             const stopDot = screen.queryByTestId("stop-dot")
 
