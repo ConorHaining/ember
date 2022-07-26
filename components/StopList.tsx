@@ -27,7 +27,7 @@ const StopList: React.FC<{ tripId: string }> = ({ tripId }) => {
         refreshInterval = 30000;
     }
 
-    const { data, error, isValidating } = useSWR(`https://api.ember.to/v1/trips/${tripId}`, fetcher, { refreshInterval });
+    const { data, error, isValidating } = useSWR(`https://api.ember.to/v1/trips/${tripId}/`, fetcher, { refreshInterval });
 
     if (error) {
         return (<Alert variant='danger'>We are unable to get information about this trip right now.</Alert>)

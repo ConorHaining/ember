@@ -123,7 +123,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         ...(data.description.notes_details ? {notes_details: data.description.notes_details}: {})
     }
 
-    const apiUrl = `https://api.ember.to/v1/trips/${tripId}`;
+    const apiUrl = `https://api.ember.to/v1/trips/${tripId}/`;
 
     return {
         props: {
