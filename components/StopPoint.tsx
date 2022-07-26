@@ -2,6 +2,7 @@ import styles from "./StopPoint.module.css";
 
 type StopPointProps = {
     destination: string;
+    detailedName: string;
     estimatedDepartureTime: string;
     actualDepartureTime: string;
     scheduledDepartureTime: string;
@@ -9,13 +10,23 @@ type StopPointProps = {
     actualArrivalTime: string;
     scheduledArrivalTime: string;
     isSkipped: boolean;
-    reservationCutoffInMinutes: number;
     isTerminating: boolean;
     isOrigin: boolean;
 };
 
-// TODO reorder props
-export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepartureTime, actualDepartureTime, scheduledDepartureTime, estimatedArrivalTime,actualArrivalTime, scheduledArrivalTime, isSkipped, reservationCutoffInMinutes, isTerminating, isOrigin }) => {
+export const StopPoint: React.FC<StopPointProps> = (
+    { 
+        destination,
+        detailedName,
+        estimatedDepartureTime,
+        actualDepartureTime,
+        scheduledDepartureTime,
+        estimatedArrivalTime, actualArrivalTime,
+        scheduledArrivalTime,
+        isSkipped,
+        isTerminating,
+        isOrigin, }
+) => {
 
     const parseDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -67,7 +78,7 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
             break;
 
         case "Estimated": {
-            if(isTerminating) {
+            if (isTerminating) {
                 expectedTime = new Date(scheduledArrivalTime);
                 actualTime = new Date(estimatedArrivalTime);
             } else {
@@ -107,10 +118,11 @@ export const StopPoint: React.FC<StopPointProps> = ({ destination, estimatedDepa
     }
 
     return (
-        <div className={`grid grid-cols-4 grid-rows-auto ${isSkipped ? "text-slate-500" : ""}`}>
-            <span data-testid="stop-dot" className={`row-span-2 col-span-1 ${styles.dot} ${calculateStopDot()}`}></span>
-            <span className="col-start-2 col-span-full text-2xl font-semibold pt-4">{destination}</span>
-            {!isSkipped && <span data-testid="timestamp" className="col-start-2 col-span-full">{stopVerb} at {displayedTime} {lateIndicator}</span>}
+        <div className={`grid grid-cols-4 grid-rows-3 ${isSkipped ? "text-slate-500" : ""} border-b border-slate-400`}>
+            <span data-testid="stop-dot" className={`row-span-3 col-span-1 ${styles.dot} ${calculateStopDot()}`}></span>
+            <span className="col-start-2 col-span-full text-2xl font-semibold pt-3">{destination}</span>
+            <span className="col-start-2 col-span-full font-semibold">{detailedName}</span>
+            {!isSkipped && <span data-testid="timestamp" className="col-start-2 col-span-full text-lg">{stopVerb} at {displayedTime} {lateIndicator}</span>}
             {isSkipped && <span className="col-start-2 col-span-full font-bold">SKIPPED</span>}
         </div>
     );

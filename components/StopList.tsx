@@ -50,6 +50,7 @@ const StopList: React.FC<{ tripId: string }> = ({ tripId }) => {
                 <div key={point.location.id}>
                     <StopPoint
                         destination={point.location.name}
+                        detailedName={point.location.detailed_name}
                         estimatedDepartureTime={point.departure.estimated}
                         actualDepartureTime={point.departure.actual}
                         scheduledDepartureTime={point.departure.scheduled}
@@ -57,7 +58,6 @@ const StopList: React.FC<{ tripId: string }> = ({ tripId }) => {
                         actualArrivalTime={point.arrival.actual}
                         scheduledArrivalTime={point.arrival.scheduled}
                         isSkipped={point.skipped}
-                        reservationCutoffInMinutes={point.booking_cut_off_mins}
                         isTerminating={array.length - 1 === index}
                         isOrigin={index === 0} />
                 </div>

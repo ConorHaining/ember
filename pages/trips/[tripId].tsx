@@ -22,6 +22,7 @@ type StopPointData = {
     location: {
         id: number;
         name: string;
+        detailed_name: string;
     };
     skipped: boolean;
     booking_cut_off_mins: number;
@@ -109,6 +110,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         location: {
             id: routeItem.location.id,
             name: routeItem.location.name,
+            detailed_name: routeItem.location.detailed_name,
         },
         skipped: routeItem.skipped,
         booking_cut_off_mins: routeItem.booking_cut_off_mins
